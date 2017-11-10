@@ -34,6 +34,7 @@ public class GetWordList {
 
 
             } while (userWord.isEmpty());
+            userWord = "*" + userWord;
             wordList.put(key, userWord);
         }
         return wordList;

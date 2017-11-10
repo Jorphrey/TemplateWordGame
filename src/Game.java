@@ -9,11 +9,13 @@ public class Game {
     private List<String> story;
     private GetWordList getWordList;
     private Map<String, String> playerWords;
-    StoryFileReader storyFileReader;
+    private StoryFileReader storyFileReader;
 
 
     public Game() {
         scanner = new Scanner(System.in);
+
+        //Linked list is used so the order remains the same as it was entered
         story = new LinkedList<>();
     }
 
@@ -68,11 +70,19 @@ public class Game {
         int storyLength = 0;
 
         storyFileReader = new StoryFileReader(storyChoice);
+
+        //method to read the selected story text file
         story = storyFileReader.readFile();
+
+        //creates list of words in the file that the user will replace
         getWordList = new GetWordList(story);
         System.out.println("Type your words now!");
+
+        //word list is displayed one at a time and player enters their own word which is stored in a linkedHashMap
         playerWords = getWordList.playerAddWords();
-        //System.out.println(playerWords);
+
+        //iterate through the linkedlist that contains the story and through the hashmap that contains the key(orginal
+        //story word), and the value(the player entered word) and replace the story word with the player word value.
         for (int i = 0; i < story.size(); i++) {
             for (String word : playerWords.keySet()) {
                 if (story.get(i).equals(word)) {
@@ -80,12 +90,16 @@ public class Game {
                 }
             }
         }
+        //create a stringbuilder using the updated story in the linkedlist
         for (int i = 0; i < story.size(); i++) {
 
+            //add a line break to wrap the story
             if (storyLength + story.get(i).length() > 50) {
                 stringBuilder.append(System.getProperty("line.separator"));
                 storyLength = 0;
             }
+
+            //corrects spacing for words that should have puncuation
             try {
                 if (story.get(i + 1).equals(",") || story.get(i + 1).equals("'s") || story.get(i + 1).equals(".")) {
                     stringBuilder.append(story.get(i));
@@ -98,6 +112,8 @@ public class Game {
 
             }
         }
+        //TODO save stringBuilder to an list so the user can read it again if they want
+        //print the story with the players words
         System.out.println("\n" + stringBuilder + "\n");
 
         playOrEnd();
