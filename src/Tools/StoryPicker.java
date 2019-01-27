@@ -3,7 +3,6 @@ package Tools;
 
 import java.util.Random;
 
-//TODO Make Singleton? I think i only need one of these
 public class StoryPicker {
 
     private String genre;

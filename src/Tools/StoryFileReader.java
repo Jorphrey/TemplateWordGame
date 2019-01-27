@@ -22,7 +22,6 @@ public class StoryFileReader {
 
         scanner = new Scanner(fileReader);
 
-
         story = new LinkedList<>();
 
     }
