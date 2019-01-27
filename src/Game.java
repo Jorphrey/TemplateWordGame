@@ -52,15 +52,19 @@ public class Game {
         System.out.println("\t2. History");
         System.out.println("\t3. more to come");
         while (true) {
-            pick = scanner.nextLine().toString();
-            if (!pick.equals("1") && !pick.equals("2") && !pick.equals("3")) {
-                System.out.println("Invalid choice, please try again.");
-            }
-
-            if (pick.equals("1")) {
-                System.out.println("You picked fairy tales!\n");
-                playGame("src/FairyTale.txt");
-
+            pick = scanner.nextLine();
+            switch (pick) {
+                case "1":
+                    playGame("src/FairyTale.txt");
+                    break;
+                case "2":
+                    System.out.println("Not available. Please pick again.");
+                    continue;
+                case "3":
+                    System.out.println("Not available. Please pick again.");
+                    continue;
+                default:
+                    System.out.println("Invalid choice, please try again.");
             }
         }
     }
